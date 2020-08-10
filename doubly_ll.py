@@ -73,7 +73,26 @@ class DLL:
 
 # DELETE SECTION
     def delete_head(self):
-        pass
+        #If count is zero 
+        if self.count is 0:
+            #print an error
+            print("Error: DLL is currently empty")
+        #ELIF the head is the tail 
+        elif self.head is self.tail:
+            #Set both to None
+            self.head = None
+            self.tail = None
+            #Substract one from the conter or set to zero
+            self.count = 0
+        #ELSE
+        else:
+            #Set the next node after the current head as the new head
+            new_head = self.head.next
+            self.head = new_head
+            #Set the prev of the new head as None
+            self.head.set_prev(None)
+            #Substract one from the counter
+            self.count -= 1
 
     def delete_tail(self):
         pass
@@ -98,6 +117,7 @@ dll = DLL()
 dll.insert_to_head(9)
 dll.insert_to_head(3)
 dll.insert_to_tail(1)
-dll.insert_to_tail(2)
-dll.insert_to_tail(3)
 dll.print_val()
+dll.delete_head()
+dll.print_val()
+#print(dll.count)
