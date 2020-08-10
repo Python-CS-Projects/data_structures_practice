@@ -4,10 +4,10 @@ class Node:
         self.next = next_node
         self.data = data
 
-    def insert_prev(self,value):
+    def set_prev(self,value):
         self.prev = value
 
-    def insert_next(self,value):
+    def set_next(self,value):
         self.next = value
 
     def get_value(self):
@@ -32,9 +32,9 @@ class DLL:
         #Add to head
         else:
             temp_node = self.head # none <- y -> z
-            self.head.prev = new_node  # x <- y -> z
+            self.head.set_prev(new_node)  # x <- y -> z
             self.head = new_node  # none <- x -> none
-            self.head.next = temp_node  # none <- x -> y
+            self.head.set_next(temp_node)  # none <- x -> y
             self.count += 1
 
 
@@ -47,18 +47,28 @@ class DLL:
             self.head = new_node
             #Insert in the tail
             self.tail = new_node
+            #Increase conter
+            self.count += 1
         #IF head is tail (only one item in the DLL)
         if self.head is self.tail:
             #insert new NODE to head.next
-            self.head.next = new_node
+            self.head.set_next(new_node)
             #Set the tail to be the New Node
             self.tail = new_node
+            #add the pre of the tail
+            self.tail.set_prev(self.head)
+            #increase conter
+            self.count += 1
         #Else 
         else:
             #Set current tail.next to equal new node
-            self.tail.next = new_node
+            self.tail.set_next(new_node)
+            #set the old tail as pre of the new tail
+            new_node.set_prev(self.tail)
             #Set tail to equal new Node
             self.tail = new_node
+            #increase conter
+            self.count += 1
             
 
 # DELETE SECTION
