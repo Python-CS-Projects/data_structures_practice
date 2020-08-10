@@ -25,7 +25,7 @@ class DLL:
         #New Node
         new_node = Node(value)
         #check if DLL is empty
-        if self.count is 0:
+        if self.count == 0:
             self.head = new_node
             self.tail = new_node
             self.count += 1
@@ -42,7 +42,7 @@ class DLL:
         #Create a new Node with the given value
         new_node = Node(value)
         #IF DLL is empty = Head is None
-        if self.count is 0:
+        if self.count == 0:
             #Inster in the head 
             self.head = new_node
             #Insert in the tail
@@ -74,7 +74,7 @@ class DLL:
 # DELETE SECTION
     def delete_head(self):
         #If count is zero 
-        if self.count is 0:
+        if self.count == 0:
             #print an error
             print("Error: DLL is currently empty")
         #ELIF the head is the tail 
@@ -95,10 +95,48 @@ class DLL:
             self.count -= 1
 
     def delete_tail(self):
-        pass
+        new_tail = self.tail.prev
+        self.tail = new_tail
+        self.tail.next = None
 
-    def delete_val(self, value):
-        pass
+    def delete_val(self, target):
+        #IF empty
+        if self.count == 0:
+            #print an error
+            print("Error: DLL is currently empty")
+        #ELIF the head is the tail
+        elif self.head is self.tail:
+            if self.head.data is target:
+                #Set both to None
+                self.head = None
+                self.tail = None
+                #Substract one from the conter or set to zero
+                self.count = 0
+            else:
+                print("Error: Value not found!")
+        #ELSE:
+        elif self.head.data is target:
+            self.delete_head()
+        elif self.tail.data is target:
+            self.delete_tail()
+        else:
+            #Itenerate over the DDL
+            curr_node = self.head
+            while curr_node is not None:
+                #IF Current value is the target
+                if curr_node.data is target:
+                    #Delete by setting prev next as curr val next
+                    prev_node = curr_node.prev
+                    next_node = curr_node.next
+                    #Curr next pre as prev
+                    prev_node.set_next(next_node)
+                    next_node.set_prev(prev_node)
+                    #Substract one from count
+                    self.count -= 0
+
+                curr_node = curr_node.next
+            
+
 
 # PRINT SECTION
     def print_val(self):
@@ -117,7 +155,7 @@ dll = DLL()
 dll.insert_to_head(9)
 dll.insert_to_head(3)
 dll.insert_to_tail(1)
+#dll.print_val()
+dll.delete_val(1)
 dll.print_val()
-dll.delete_head()
-dll.print_val()
-#print(dll.count)
+# print(dll.count)
