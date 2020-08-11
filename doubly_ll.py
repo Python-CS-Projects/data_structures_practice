@@ -72,7 +72,9 @@ class Doubly_linked_list:
 
 # DELETE SECTION
 
+
     def delete_head(self):
+        delete_value = self.head.data
         # If count is zero
         if self.count == 0:
             # print an error
@@ -84,6 +86,7 @@ class Doubly_linked_list:
             self.tail = None
             # Substract one from the conter or set to zero
             self.count = 0
+            return delete_value
         # ELSE
         else:
             # Set the next node after the current head as the new head
@@ -93,11 +96,14 @@ class Doubly_linked_list:
             self.head.set_prev(None)
             # Substract one from the counter
             self.count -= 1
+            return delete_value
 
-    def delete_tail(self):
-        new_tail = self.tail.prev
+    def delete_tail(self) -> int:
+        old_tail = self.tail
+        new_tail = old_tail.prev
         self.tail = new_tail
         self.tail.next = None
+        return old_tail.data
 
     def delete_val(self, target):
         # IF empty
@@ -138,6 +144,7 @@ class Doubly_linked_list:
 
 
 # PRINT SECTION
+
 
     def print_val(self):
         # Current Node
