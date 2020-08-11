@@ -1,6 +1,8 @@
 from doubly_ll import Doubly_linked_list
+#FIFO= First in First out
 
-class Queue:#FIFO
+
+class Queue:
     def __init__(self):
         self.storage = Doubly_linked_list()
         self.size = 0

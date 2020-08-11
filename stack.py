@@ -1,7 +1,7 @@
 from doubly_ll import Doubly_linked_list
+# Fist in Last out
 
-
-class Stack:  # Fist in last out
+class Stack: 
     def __init__(self):
         self.storage = Doubly_linked_list()
         self.count = 0

@@ -11,6 +11,23 @@ class LinkedList:
 
     # Insert to tail
 
+    def reverse_ll(self):
+        #Current node
+        curr_node = self.head
+        #Prev pointer
+        prev = None
+        #Loop over the LL
+        while curr_node is not None:
+            #Flip the values
+            next_node = curr_node.next_node # 1 > 2 > 3 -- next = 2 -- next = 3 -- next = None
+            curr_node.next_node = prev # 1 > None -- 2 > 1 > None -- 3 > 2 > 1 > None
+            prev = curr_node # prev = 1 -> None -- prev = 2 -- prev = 3
+
+            #Move curr pointer to next to keep loop
+            curr_node = next_node
+        #after loop completes set the last prev to be the head = 3
+        self.head = prev
+
     def insert_to_tail(self, value):
         node = Node(value)
         if self.head is None:
@@ -73,10 +90,11 @@ class LinkedList:
 
 linked_list = LinkedList()
 
-linked_list.insert_to_tail(4)
-linked_list.insert_to_head(5)
-linked_list.insert_to_head(10)
+linked_list.insert_to_head(4)
+linked_list.insert_to_tail(5)
+linked_list.insert_to_tail(10)
 linked_list.print_values()
-linked_list.delete_tail()
-linked_list.delete_head()
+# linked_list.delete_tail()
+# linked_list.delete_head()
+linked_list.reverse_ll()
 linked_list.print_values()
